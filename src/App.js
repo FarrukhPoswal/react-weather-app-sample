@@ -33,17 +33,9 @@ const App = () => {
   const [latitude, setLatitude] = useState([]);
   const [datas, setDatas] = useState([]);
 
-  const apiCallHandler = async () => {
-    const fetchData = await fetch(`${process.env.REACT_APP_API_URL}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
-    const dataJson = await fetchData.json();
-    setDatas(dataJson);
-    console.log(dataJson);
-  }
-
   const handleLocations = (longitude, latitude) => {
     setLatitude(latitude);
     setLongitude(longitude);
-    apiCallHandler();
   }
 
   useEffect(() => {
@@ -61,7 +53,11 @@ const App = () => {
   return (
     <div className="App">
       <WeatherList locations={locations} handleLocations={handleLocations} />
-      <WeatherCard datas={datas} />
+      {(typeof datas.daily != 'undefined') ? (
+        <WeatherCard datas={datas}/>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
