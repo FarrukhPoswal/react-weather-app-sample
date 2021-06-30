@@ -2,18 +2,15 @@ import React from "react";
 
 const WeatherList = ({ locations, handleLocations }) => {
     return (
-        <ul>
-            {locations.map((location) => (
-                <li
-                    key={location.id}
-                    onClick={() =>
-                        handleLocations(location.longitude, location.latitude)
-                    }
-                >
-                    {location.name}
-                </li>
-            ))}
-        </ul>
+        <div class="ui dropdown">
+            <input type="hidden" name="gender" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Gender</div>
+            <div class="menu">
+                <div class="item" data-value="male">Male</div>
+                <div class="item" data-value="female">Female</div>
+            </div>
+        </div>
     );
 };
 

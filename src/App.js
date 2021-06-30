@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WeatherList from './Components/WeatherList';
-import WeatherCard from './Components/WeatherCard';
+import WeatherCurrent from './Components/WeatherCurrent';
+import WeatherDaily from './Components/WeatherDaily';
 import './App.css';
 
 const locations = [
@@ -21,7 +22,7 @@ const locations = [
     name: 'Pré de Madame Carle',
     latitude: '44.91736',
     longitude: '6.41682',
-  }
+  },
 ];
 
 const App = () => {
@@ -53,11 +54,19 @@ const App = () => {
   return (
     <div className="App">
       <WeatherList locations={locations} handleLocations={handleLocations} />
-      {(typeof datas.daily != 'undefined') ? (
-        <WeatherCard datas={datas}/>
+
+      {(typeof datas.current != 'undefined') ? (
+        <WeatherCurrent datas={datas}/>
       ) : (
         <div></div>
       )}
+
+      {(typeof datas.daily != 'undefined') ? (
+        <WeatherDaily datas={datas} />
+      ) : (
+        <div></div>
+      )}
+
     </div>
   );
 }

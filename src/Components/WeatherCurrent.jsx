@@ -1,6 +1,6 @@
 import React from "react";
 
-const WeatherCard = ({ datas }) => {
+const WeatherCurrent = ({ datas }) => {
     return (
         <div>
             <p>{datas.current.temp}</p>
@@ -8,4 +8,4 @@ const WeatherCard = ({ datas }) => {
     );
 };
 
-export default WeatherCard;
+export default WeatherCurrent;
