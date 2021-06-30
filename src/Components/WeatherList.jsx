@@ -1,21 +1,23 @@
 import React from "react";
-import 'semantic-ui-css/semantic.min.css';
+import styled from "styled-components/macro";
 
 const WeatherList = ({ locations, handleLocations }) => {
     return (
-        <ul>
+        <WeatherListSelect onChange={(event) => handleLocations(event.target.value)}>
             {locations.map((location) => (
-                <li
+                <option
                     key={location.id}
-                    onClick={() =>
-                        handleLocations(location.longitude, location.latitude)
-                    }
+                    value={[location.longitude, location.latitude]}
                 >
                     {location.name}
-                </li>
+                </option>
             ))}
-        </ul>
+        </WeatherListSelect>
     );
 };
+
+const WeatherListSelect = styled.select`
+    padding: 1rem;
+`;
 
 export default WeatherList;

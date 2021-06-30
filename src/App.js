@@ -34,9 +34,9 @@ const App = () => {
   const [latitude, setLatitude] = useState([]);
   const [datas, setDatas] = useState([]);
 
-  const handleLocations = (longitude, latitude) => {
-    setLatitude(latitude);
-    setLongitude(longitude);
+  const handleLocations = (eventValue) => {
+    setLongitude(eventValue.slice(0, -9))
+    setLatitude(eventValue.slice(8))
   }
 
   useEffect(() => {
