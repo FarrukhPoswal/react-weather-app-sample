@@ -1,16 +1,20 @@
 import React from "react";
+import 'semantic-ui-css/semantic.min.css';
 
 const WeatherList = ({ locations, handleLocations }) => {
     return (
-        <div class="ui dropdown">
-            <input type="hidden" name="gender" />
-            <i class="dropdown icon"></i>
-            <div class="default text">Gender</div>
-            <div class="menu">
-                <div class="item" data-value="male">Male</div>
-                <div class="item" data-value="female">Female</div>
-            </div>
-        </div>
+        <ul>
+            {locations.map((location) => (
+                <li
+                    key={location.id}
+                    onClick={() =>
+                        handleLocations(location.longitude, location.latitude)
+                    }
+                >
+                    {location.name}
+                </li>
+            ))}
+        </ul>
     );
 };
 
