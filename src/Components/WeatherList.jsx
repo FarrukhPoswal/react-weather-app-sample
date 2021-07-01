@@ -17,7 +17,10 @@ const WeatherList = ({ locations, handleLocations }) => {
 };
 
 const WeatherListSelect = styled.select`
+    width: 25vw;
     padding: 1rem;
+    margin: 1rem auto;
+    display: block;
 `;
 
 export default WeatherList;

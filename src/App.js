@@ -30,8 +30,8 @@ const App = () => {
   const apiMethod = 'onecall';
   const apiOptions = 'exclude=hourly,minutely';
 
-  const [longitude, setLongitude] = useState([]);
-  const [latitude, setLatitude] = useState([]);
+  const [longitude, setLongitude] = useState(locations[0].longitude);
+  const [latitude, setLatitude] = useState(locations[0].latitude);
   const [datas, setDatas] = useState([]);
 
   const handleLocations = (eventValue) => {
