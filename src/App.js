@@ -84,8 +84,10 @@ const App = () => {
         handleLocations={handleLocations} 
       />
 
-      {(typeof address != 'undefined') ? (
-        <WeatherAddress address={address} />
+      {(typeof address.localityInfo !== 'undefined') ? (
+        <WeatherAddress 
+          address={address}
+        />
       ) : (
         <div></div>
       )}
@@ -101,7 +103,6 @@ const App = () => {
       ) : (
         <div></div>
       )}
-
     </div>
   );
 }

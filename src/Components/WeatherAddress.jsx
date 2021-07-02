@@ -5,6 +5,9 @@ const WeatherAddress = ({ address }) => {
     return (
         <AddressDisplay>
             <p>Prévisions pour : {address.locality}</p>
+            <p>
+                Département : {address.localityInfo.administrative[3].name}
+            </p>
         </AddressDisplay>
     )
 }
