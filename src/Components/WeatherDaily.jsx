@@ -13,8 +13,8 @@ const WeatherDaily = ({ datas }) => {
                         src={`${process.env.REACT_APP_ICON_URL}/${data.weather[0].icon}@2x.png`}
                         alt="weather icon"
                     />
-                    <p>Température Maximale : {Math.trunc(data.temp.max)}°C</p>
-                    <p>Température Minimale : {Math.trunc(data.temp.min)}°C</p>
+                    <p>Température Maximale : {Math.trunc(data.temp.max)}&deg;C</p>
+                    <p>Température Minimale : {Math.trunc(data.temp.min)}&deg;C</p>
                     <p>
                         Levé de soleil :{" "}
                         {new Date(data.sunrise * 1000).toLocaleTimeString(

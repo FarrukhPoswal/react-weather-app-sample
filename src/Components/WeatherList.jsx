@@ -8,6 +8,7 @@ const WeatherList = ({ locations, handleLocations }) => {
             <ListSelect
                 onChange={(event) => handleLocations(event.target.value)}
             >
+                <option value="">Veuillez sélectionner votre destination</option>
                 {locations.map((location) => (
                     <option
                         key={location.id}

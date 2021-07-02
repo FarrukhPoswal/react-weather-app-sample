@@ -8,20 +8,20 @@ const locations = [
   {
     id: 1,
     name: 'Plateau d\'Emparis',
-    latitude: '45.05360',
-    longitude: '6.23389',
+    latitude: '45.0523',
+    longitude: '6.2342',
   },
   {
     id: 2,
     name: 'Nevache',
-    latitude: '45.1887',
-    longitude: '6.60521',
+    latitude: '45.0192',
+    longitude: '6.6068',
   },
   {
     id: 3,
     name: 'Pré de Madame Carle',
-    latitude: '44.91736',
-    longitude: '6.41682',
+    latitude: '44.9178',
+    longitude: '6.4156',
   },
 ];
 
@@ -30,25 +30,42 @@ const App = () => {
   const apiMethod = 'onecall';
   const apiOptions = 'exclude=hourly,minutely';
 
-  const [longitude, setLongitude] = useState([]);
-  const [latitude, setLatitude] = useState([]);
+  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [address, setAddress] = useState(null)
   const [datas, setDatas] = useState([]);
 
   const handleLocations = (eventValue) => {
-    setLongitude(eventValue.slice(0, -9))
-    setLatitude(eventValue.slice(8))
+    setLongitude(eventValue.slice(0, -8));
+    setLatitude(eventValue.slice(7));
   }
 
   useEffect(() => {
+    if (latitude === null && longitude === null) {
+      navigator.geolocation.getCurrentPosition(position => {
+        setLongitude(position.coords.longitude);
+        setLatitude(position.coords.latitude);
+      }, error => {
+        console.error(error);
+      })
+    }
+
+    const reverseGeocodeCallHandler = async () => {
+      const fetchAddress = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
+      const addressJson = await fetchAddress.json();
+      setAddress(addressJson)
+      console.log(addressJson);
+    }
+
     const apiCallHandler = async () => {
       const fetchData = await fetch(`${process.env.REACT_APP_API_URL}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
       const dataJson = await fetchData.json();
       setDatas(dataJson);
       console.log(dataJson);
     }
-    return () => {
-      apiCallHandler();
-    }
+
+    reverseGeocodeCallHandler();
+    apiCallHandler();
   }, [latitude, longitude])
 
   return (

@@ -8,7 +8,7 @@ const WeatherCurrent = ({ datas }) => {
                 src={`${process.env.REACT_APP_ICON_URL}/${datas.current.weather[0].icon}@2x.png`}
                 alt="weather icon"
             />
-            <p>Température actuelle : {Math.trunc(datas.current.temp)}°C</p>
+            <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>
         </CurrentCard>
     );
 };
