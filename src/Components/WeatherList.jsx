@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-const WeatherList = ({ locations, handleLocations }) => {
+const WeatherList = ({ locations, handleLocations}) => {
     return (
         <List>
             <ListLabel>Veuillez sélectionner votre destination</ListLabel>
             <ListSelect
                 onChange={(event) => handleLocations(event.target.value)}
             >
-                <option value="">Veuillez sélectionner votre destination</option>
+                <option value="">Votre localisation actuelle</option>
                 {locations.map((location) => (
                     <option
                         key={location.id}
