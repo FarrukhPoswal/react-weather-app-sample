@@ -2,12 +2,19 @@ import React from "react";
 import styled from "styled-components/macro";
 
 const WeatherDaily = ({ datas }) => {
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+
     return (
         <DailyCardWrapper>
             {datas.daily.map((data) => (
                 <DailyCardItem key={data.dt}>
                     <h4>
-                        {new Date(data.dt * 1000).toLocaleDateString("fr-FR")}
+                        {new Date(data.dt * 1000).toLocaleDateString("fr-FR", options)}
                     </h4>
                     <img
                         src={`${process.env.REACT_APP_ICON_URL}/${data.weather[0].icon}@2x.png`}
@@ -50,9 +57,40 @@ const WeatherDaily = ({ datas }) => {
 };
 
 const DailyCardWrapper = styled.div`
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "."
+        "."
+        "."
+        "."
+        "."
+        "."
+        "."
+        ".";
+    justify-items: center;
+
+    @media (min-width: 564px) {
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr 1fr 1fr 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+            ". ."
+            ". ."
+            ". ."
+            ". ."; 
+    }
+
+    @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr; 
+        grid-template-rows: 1fr 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+            ". . . ."
+            ". . . ."; 
+    }
 `;
 
 const DailyCardItem = styled.div`

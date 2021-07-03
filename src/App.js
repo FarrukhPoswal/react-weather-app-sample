@@ -8,21 +8,21 @@ import './App.css';
 const locations = [
   {
     id: 1,
-    name: 'Plateau d\'Emparis',
-    latitude: '45.0523',
-    longitude: '6.2342',
+    name: "Plateau d'Emparis",
+    latitude: "45.0523",
+    longitude: "6.2342",
   },
   {
     id: 2,
-    name: 'Nevache',
-    latitude: '45.0192',
-    longitude: '6.6068',
+    name: "Nevache",
+    latitude: "45.0192",
+    longitude: "6.6068",
   },
   {
     id: 3,
-    name: 'Pré de Madame Carle',
-    latitude: '44.9178',
-    longitude: '6.4156',
+    name: "Pré de Madame Carle",
+    latitude: "44.9178",
+    longitude: "6.4156",
   },
 ];
 
