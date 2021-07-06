@@ -13,8 +13,9 @@ const WeatherAddress = ({ address }) => {
 }
 
 const AddressDisplay = styled.div`
+    margin: 4rem 0;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 2rem;
 `;
 
 export default WeatherAddress;

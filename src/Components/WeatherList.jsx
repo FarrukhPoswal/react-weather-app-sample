@@ -23,21 +23,21 @@ const WeatherList = ({ locations, handleLocations}) => {
 };
 
 const List = styled.div`
-    width: 25vw;
-    margin: 1rem auto;
+    width: 30rem;
+    margin: 2rem auto;
     display: block;
+    font-size: 1.6rem;
 `;
 
 const ListSelect = styled.select`
     width: 100%;
-    margin: 1rem 0;
+    margin: 2rem 0;
     padding: 1rem;
 `;
 
 const ListLabel = styled.label`
     display: flex;
     justify-content: center;
-    font-size: 1.2rem;
 `;
 
 export default WeatherList;

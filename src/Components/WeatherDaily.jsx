@@ -13,9 +13,9 @@ const WeatherDaily = ({ datas }) => {
         <DailyCardWrapper>
             {datas.daily.map((data) => (
                 <DailyCardItem key={data.dt}>
-                    <h4>
+                    <DailyCardItemTitle>
                         {new Date(data.dt * 1000).toLocaleDateString("fr-FR", options)}
-                    </h4>
+                    </DailyCardItemTitle>
                     <img
                         src={`${process.env.REACT_APP_ICON_URL}/${data.weather[0].icon}@2x.png`}
                         alt="weather icon"
@@ -58,6 +58,7 @@ const WeatherDaily = ({ datas }) => {
 
 const DailyCardWrapper = styled.div`
     display: grid;
+    flex-wrap: wrap;
     grid-template-columns: 1fr; 
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
     gap: 0px 0px; 
@@ -72,7 +73,7 @@ const DailyCardWrapper = styled.div`
         ".";
     justify-items: center;
 
-    @media (min-width: 564px) {
+    @media (min-width: 798px) {
         grid-template-columns: 1fr 1fr; 
         grid-template-rows: 1fr 1fr 1fr 1fr; 
         gap: 0px 0px; 
@@ -83,7 +84,7 @@ const DailyCardWrapper = styled.div`
             ". ."; 
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1600px) {
         grid-template-columns: 1fr 1fr 1fr 1fr; 
         grid-template-rows: 1fr 1fr; 
         gap: 0px 0px; 
@@ -94,8 +95,19 @@ const DailyCardWrapper = styled.div`
 `;
 
 const DailyCardItem = styled.div`
-    width: 20vw;
-    padding: 1rem;
+    width: 30rem;
+    margin: 4rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.6rem;
+    border: 1px solid black;
+    border-radius: 5px;
+`;
+
+const DailyCardItemTitle = styled.h4`
+    font-size: 2rem;
 `;
 
 export default WeatherDaily;

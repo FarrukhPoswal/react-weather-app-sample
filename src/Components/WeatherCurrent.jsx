@@ -22,9 +22,11 @@ const WeatherCurrent = ({ datas }) => {
 const CurrentCard = styled.div`
     padding: 3rem;
     margin: 1rem auto;
-    width: 10rem;
+    width: 20rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    font-size: 1.6rem;
     border: 1px solid black;
     border-radius: 5px;
 `;
