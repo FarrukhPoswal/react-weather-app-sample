@@ -65,7 +65,9 @@ const App = () => {
                     position.coords.latitude,
                 ]);
             } catch (error) {
-                console.error(error);
+                window.alert(
+                    `Impossible de localiser votre position: ${error}`
+                );
             }
         };
 
