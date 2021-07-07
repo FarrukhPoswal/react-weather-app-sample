@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 const WeatherList = ({ locations, handleLocations}) => {
     return (
         <List>
-            <ListLabel>Veuillez sélectionner votre destination</ListLabel>
+            <ListLabel>Veuillez sélectionner votre localisation</ListLabel>
             <ListSelect
                 onChange={(event) => handleLocations(event.target.value)}
             >
@@ -29,15 +29,15 @@ const List = styled.div`
     font-size: 1.6rem;
 `;
 
+const ListLabel = styled.label`
+    display: flex;
+    justify-content: center;
+`;
+
 const ListSelect = styled.select`
     width: 100%;
     margin: 2rem 0;
     padding: 1rem;
-`;
-
-const ListLabel = styled.label`
-    display: flex;
-    justify-content: center;
 `;
 
 export default WeatherList;

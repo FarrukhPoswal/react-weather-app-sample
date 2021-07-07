@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WeatherList from "./Components/WeatherList";
+import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
 import WeatherCurrent from "./Components/WeatherCurrent";
 import WeatherDaily from "./Components/WeatherDaily";
@@ -33,21 +34,27 @@ const App = () => {
 
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
+    const [locationSearch, setLocationSearch] = useState("");
     const [currentLocation, setCurrentLocation] = useState([
         longitude,
         latitude,
     ]);
     const [address, setAddress] = useState([]);
     const [datas, setDatas] = useState([]);
+    const [cityGeo, setCityGeo] = useState([]);
 
-    const handleLocations = (eventValue) => {
-        if (eventValue !== "") {
-            setLongitude(eventValue.slice(0, -8));
-            setLatitude(eventValue.slice(7));
+    const handleLocations = (event) => {
+        if (event !== "") {
+            setLongitude(event.slice(0, -8));
+            setLatitude(event.slice(7));
         } else {
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
+    };
+
+    const handleInputValueSearch = (event)  => {
+        setLocationSearch(event)
     };
 
     useEffect(() => {
@@ -79,8 +86,7 @@ const App = () => {
 
         const reverseGeocodeCallHandler = async () => {
             const fetchAddress = await fetch(
-                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`
-            );
+                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
             const addressJson = await fetchAddress.json();
             setAddress(addressJson);
             // console.log(addressJson);
@@ -88,8 +94,7 @@ const App = () => {
 
         const apiCallHandler = async () => {
             const fetchData = await fetch(
-                `${process.env.REACT_APP_API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`
-            );
+                `${process.env.REACT_APP_API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
             const dataJson = await fetchData.json();
             setDatas(dataJson);
             // console.log(dataJson);
@@ -99,11 +104,29 @@ const App = () => {
         apiCallHandler();
     }, [latitude, longitude, currentLocation]);
 
+    useEffect(() => {
+        const apiCallHandler = async () => {
+            const fetchData = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationSearch}&appid=ce901c6857cf6809af1d9e7195187878`);
+            const dataJson = fetchData.json();
+            setCityGeo(dataJson);
+        }
+
+        apiCallHandler();
+    }, [locationSearch])
+
+    console.log(cityGeo);
+
     return (
         <div className="App">
             <WeatherList
                 locations={locations}
                 handleLocations={handleLocations}
+            />
+
+            <WeatherInputSearch
+                handleInputValueSearch={handleInputValueSearch}
+                // handleLocationSearch={handleLocationSearch}
+                locationSearch={locationSearch}
             />
 
             {typeof address.localityInfo !== "undefined" ? (
