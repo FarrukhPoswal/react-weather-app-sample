@@ -24,6 +24,18 @@ const locations = [
         latitude: "44.9178",
         longitude: "6.4156",
     },
+    {
+        id: 4,
+        name: "Col Agnel",
+        latitude: "44.6853",
+        longitude: "6.9792",
+    },
+    {
+        id: 5,
+        name: "Col du Galibier",
+        latitude: "45.0646",
+        longitude: "6.4079",
+    },
 ];
 
 const App = () => {
@@ -112,13 +124,13 @@ const App = () => {
                 <div></div>
             )}
 
-            {typeof datas.current != "undefined" ? (
+            {typeof datas.current !== "undefined" ? (
                 <WeatherCurrent datas={datas} />
             ) : (
                 <div></div>
             )}
 
-            {typeof datas.daily != "undefined" ? (
+            {typeof datas.daily !== "undefined" ? (
                 <WeatherDaily datas={datas} />
             ) : (
                 <div></div>
