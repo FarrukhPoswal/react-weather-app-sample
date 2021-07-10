@@ -111,7 +111,7 @@ const App = () => {
             const fetchAddress = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${locationSearch}`);
             const addressJson = await fetchAddress.json();
             setCityGeo(addressJson);
-            console.log(addressJson);
+            // console.log(addressJson);
         }
 
         if (locationSearch !== "") {
@@ -129,8 +129,6 @@ const App = () => {
                 setLatitude(currentLocation[1]);
             }
         }
-        
-        console.log(cityGeo);
 
         if (cityGeo.length !== 0) {
             setLocationSearch();
