@@ -63,6 +63,34 @@ const App = () => {
     };
 
     useEffect(() => {
+        const apiCallHandler = async () => {
+            const fetchData = await fetch(
+                `${process.env.REACT_APP_API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
+            const dataJson = await fetchData.json();
+            setDatas(dataJson);
+            // console.log(dataJson);
+        };
+
+        if (longitude !== "" && latitude !== "") {
+            apiCallHandler();
+        }
+    }, [latitude, longitude]);
+
+    useEffect(() => {
+        const reverseGeocodeCallHandler = async () => {
+            const fetchAddress = await fetch(
+                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
+            const addressJson = await fetchAddress.json();
+            setAddress(addressJson);
+            // console.log(addressJson);
+        };
+
+        if (longitude !== "" && latitude !== "") {
+            reverseGeocodeCallHandler();
+        }
+    }, [longitude, latitude])
+
+    useEffect(() => {
         const getLocation = () => {
             return new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -88,28 +116,7 @@ const App = () => {
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
-
-        const reverseGeocodeCallHandler = async () => {
-            const fetchAddress = await fetch(
-                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
-            const addressJson = await fetchAddress.json();
-            setAddress(addressJson);
-            // console.log(addressJson);
-        };
-
-        const apiCallHandler = async () => {
-            const fetchData = await fetch(
-                `${process.env.REACT_APP_API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
-            const dataJson = await fetchData.json();
-            setDatas(dataJson);
-            // console.log(dataJson);
-        };
-
-        if (longitude !== "" && latitude !== "") {
-            reverseGeocodeCallHandler();
-            apiCallHandler();
-        }
-    }, [latitude, longitude, currentLocation]);
+    }, [currentLocation, latitude, longitude])
 
     useEffect(() => {
         const fetchCityGeo = async () => {
