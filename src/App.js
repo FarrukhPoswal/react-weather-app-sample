@@ -44,17 +44,22 @@ const App = () => {
     const [cityGeo, setCityGeo] = useState([]);
 
     const handleLocations = (event) => {
-        if (event !== "") {
+        if (event !== "" && event !== undefined) {
             setLongitude(event.slice(0, -8));
             setLatitude(event.slice(7));
         } else {
+            setLocationSearch("");
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
     };
 
-    const handleInputValueSearch = (event)  => {
-        setLocationSearch(event)
+    const handleInputValueSearch = (event) => {
+        if (event !== "") {
+            setLocationSearch(event)
+        } else {
+            handleLocations();
+        }
     };
 
     useEffect(() => {
@@ -133,7 +138,7 @@ const App = () => {
         if (cityGeo.length !== 0) {
             setLocationSearch();
         }
-    }, [cityGeo, currentLocation])
+    }, [cityGeo, currentLocation]);
 
     return (
         <div className="App">
