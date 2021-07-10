@@ -100,21 +100,42 @@ const App = () => {
             // console.log(dataJson);
         };
 
-        reverseGeocodeCallHandler();
-        apiCallHandler();
+        if (longitude !== "" && latitude !== "") {
+            reverseGeocodeCallHandler();
+            apiCallHandler();
+        }
     }, [latitude, longitude, currentLocation]);
 
     useEffect(() => {
-        const apiCallHandler = async () => {
-            const fetchData = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationSearch}&appid=ce901c6857cf6809af1d9e7195187878`);
-            const dataJson = fetchData.json();
-            setCityGeo(dataJson);
+        const fetchCityGeo = async () => {
+            const fetchAddress = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${locationSearch}`);
+            const addressJson = await fetchAddress.json();
+            setCityGeo(addressJson);
+            console.log(addressJson);
         }
 
-        apiCallHandler();
-    }, [locationSearch])
+        if (locationSearch !== "") {
+            fetchCityGeo();
+        }
+    }, [locationSearch]);
 
-    console.log(cityGeo);
+    useEffect(() => {
+        const setLocationSearch = async () => {
+            if (cityGeo.features.length > 0) {
+                setLongitude(cityGeo.features[0].geometry.coordinates[0]);
+                setLatitude(cityGeo.features[0].geometry.coordinates[1]);
+            } else {
+                setLongitude(currentLocation[0]);
+                setLatitude(currentLocation[1]);
+            }
+        }
+        
+        console.log(cityGeo);
+
+        if (cityGeo.length !== 0) {
+            setLocationSearch();
+        }
+    }, [cityGeo, currentLocation])
 
     return (
         <div className="App">
