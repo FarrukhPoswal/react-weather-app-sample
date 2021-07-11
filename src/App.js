@@ -153,7 +153,6 @@ const App = () => {
 
             <WeatherInputSearch
                 handleInputValueSearch={handleInputValueSearch}
-                // handleLocationSearch={handleLocationSearch}
                 locationSearch={locationSearch}
             />
 
