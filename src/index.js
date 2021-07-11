@@ -1,9 +1,28 @@
+/*
+Weather React App by David Bouscarle
+A simple weather app built with ReactJS
+
+Use your API key to get weather data from openweathermap.org
+
+Start your app with:
+npm start
+
+No library dependencies needed!
+*/
+
+// Import React
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Import CSS
 import './style/index_style/index_normalize.css';
 import './style/index_style/index_reset.css';
 import './style/index_style/index_typography.css';
+
+// Import App
 import App from './App';
+
+// React Features
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
