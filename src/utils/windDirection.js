@@ -15,7 +15,7 @@ const windDirections = [
 // Determine the direction of the wind
 
 const windDirection = (degrees) => {
-    var windDirectionName = [];
+    const windDirectionName = [];
 
     windDirections.forEach((windDirection) => {
         if (windDirection.range[0] <= degrees && windDirection.range[1] >= degrees) {
