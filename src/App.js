@@ -4,46 +4,17 @@ import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
 import WeatherCurrent from "./Components/WeatherCurrent";
 import WeatherDaily from "./Components/WeatherDaily";
+import WEATHER_STATIONS from "./constants/weatherStations";
+import * as API_URL from "./constants/apiUrl";
 import "./App.css";
 
-const locations = [
-    {
-        id: 1,
-        name: "Plateau d'Emparis",
-        latitude: "45.0523",
-        longitude: "6.2342",
-    },
-    {
-        id: 2,
-        name: "Nevache",
-        latitude: "45.0192",
-        longitude: "6.6068",
-    },
-    {
-        id: 3,
-        name: "Pré de Madame Carle",
-        latitude: "44.9178",
-        longitude: "6.4156",
-    },
-    {
-        id: 4,
-        name: "Col Agnel",
-        latitude: "44.6853",
-        longitude: "6.9792",
-    },
-    {
-        id: 5,
-        name: "Col du Galibier",
-        latitude: "45.0646",
-        longitude: "6.4079",
-    },
-];
-
 const App = () => {
+    // Utils for getting the weather data
     const units = "metric";
     const apiMethod = "onecall";
     const apiOptions = "exclude=hourly,minutely";
 
+    // Initialize the state
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
     const [locationSearch, setLocationSearch] = useState("");
@@ -55,6 +26,7 @@ const App = () => {
     const [datas, setDatas] = useState([]);
     const [cityGeo, setCityGeo] = useState([]);
 
+    // Display or intialize the right location
     const handleLocations = (event) => {
         if (event !== "" && event !== undefined) {
             setLongitude(event.slice(0, -8));
@@ -66,6 +38,7 @@ const App = () => {
         }
     };
 
+    // Search the location in input field
     const handleInputValueSearch = (event) => {
         if (event !== "") {
             setLocationSearch(event)
@@ -74,10 +47,11 @@ const App = () => {
         }
     };
 
+    // API Call to get datas from openweathermap.org
     useEffect(() => {
         const apiCallHandler = async () => {
             const fetchData = await fetch(
-                `${process.env.REACT_APP_API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${process.env.REACT_APP_API_KEY}`);
+                `${API_URL.API_URL_WEATHERDATA}/${apiMethod}?lat=${latitude}&lon=${longitude}&${apiOptions}&units=${units}&appid=${API_URL.API_KEY_OPENWEATHER}`);
             const dataJson = await fetchData.json();
             setDatas(dataJson);
             // console.log(dataJson);
@@ -88,10 +62,11 @@ const App = () => {
         }
     }, [latitude, longitude]);
 
+    // API Call to display the location by longitude and latitude
     useEffect(() => {
         const reverseGeocodeCallHandler = async () => {
             const fetchAddress = await fetch(
-                `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
+                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
             const addressJson = await fetchAddress.json();
             setAddress(addressJson);
             // console.log(addressJson);
@@ -102,6 +77,7 @@ const App = () => {
         }
     }, [longitude, latitude])
 
+    // Set the current location
     useEffect(() => {
         const getLocation = () => {
             return new Promise((resolve, reject) => {
@@ -130,9 +106,10 @@ const App = () => {
         }
     }, [currentLocation, latitude, longitude])
 
+    // API call to find and search the right location in the input field
     useEffect(() => {
         const fetchCityGeo = async () => {
-            const fetchAddress = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${locationSearch}`);
+            const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}`);
             const addressJson = await fetchAddress.json();
             setCityGeo(addressJson);
             // console.log(addressJson);
@@ -143,6 +120,7 @@ const App = () => {
         }
     }, [locationSearch]);
 
+    // Set the latitude and longitude of the current location or the input field
     useEffect(() => {
         const setLocationSearch = async () => {
             if (cityGeo.features.length > 0) {
@@ -162,7 +140,7 @@ const App = () => {
     return (
         <div className="App">
             <WeatherList
-                locations={locations}
+                locations={WEATHER_STATIONS}
                 handleLocations={handleLocations}
             />
 

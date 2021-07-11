@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import API_ICON_WEATHER from "../constants/iconWeather";
 
 const WeatherCurrent = ({ datas }) => {
     const currentTime = new Date().toLocaleTimeString(
@@ -11,7 +12,7 @@ const WeatherCurrent = ({ datas }) => {
         <CurrentCard>
             <p>Actullement à {currentTime}</p>
             <img
-                src={`${process.env.REACT_APP_ICON_URL}/${datas.current.weather[0].icon}@2x.png`}
+                src={`${API_ICON_WEATHER}/${datas.current.weather[0].icon}@2x.png`}
                 alt="weather icon"
             />
             <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import API_ICON_WEATHER from "../constants/iconWeather";
 
 const WeatherDaily = ({ datas }) => {
     const options = {
@@ -17,7 +18,7 @@ const WeatherDaily = ({ datas }) => {
                         {new Date(data.dt * 1000).toLocaleDateString("fr-FR", options)}
                     </DailyCardItemTitle>
                     <img
-                        src={`${process.env.REACT_APP_ICON_URL}/${data.weather[0].icon}@2x.png`}
+                        src={`${API_ICON_WEATHER}/${data.weather[0].icon}@2x.png`}
                         alt="weather icon"
                     />
                     <p>Température Maximale : {Math.trunc(data.temp.max)}&deg;C</p>
