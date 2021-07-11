@@ -1,6 +1,10 @@
+// Import React
 import React from "react";
+
+// Import styled component
 import styled from "styled-components/macro";
 
+// WeatherList component
 const WeatherList = ({ locations, handleLocations}) => {
     return (
         <List>
@@ -22,6 +26,7 @@ const WeatherList = ({ locations, handleLocations}) => {
     );
 };
 
+// Styled component
 const List = styled.div`
     width: 30rem;
     margin: 2rem auto;
@@ -40,4 +45,5 @@ const ListSelect = styled.select`
     padding: 1rem;
 `;
 
+// Export
 export default WeatherList;

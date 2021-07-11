@@ -1,5 +1,4 @@
 // Array of wind directions
-
 const windDirections = [
     { name: 'N', range: [0, 22.5] },
     { name: 'NE', range: [22.5, 67.5] },
@@ -13,7 +12,6 @@ const windDirections = [
 ];
 
 // Determine the direction of the wind
-
 const windDirection = (degrees) => {
     const windDirectionName = [];
 
@@ -27,5 +25,4 @@ const windDirection = (degrees) => {
 }
 
 // Export
-
 export default windDirection;

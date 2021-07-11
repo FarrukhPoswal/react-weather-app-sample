@@ -1,7 +1,13 @@
+// Import React
 import React from "react";
+
+// Import styled component
 import styled from "styled-components/macro";
+
+// Import icons library of openweathermap.org
 import API_ICON_WEATHER from "../constants/iconWeather";
 
+// WeatherCurrent component
 const WeatherCurrent = ({ datas }) => {
     const currentTime = new Date().toLocaleTimeString(
         "fr-FR",
@@ -20,6 +26,7 @@ const WeatherCurrent = ({ datas }) => {
     );
 };
 
+// Styled component
 const CurrentCard = styled.div`
     padding: 3rem;
     margin: 1rem auto;
@@ -32,4 +39,5 @@ const CurrentCard = styled.div`
     border-radius: 5px;
 `;
 
+// Export
 export default WeatherCurrent;

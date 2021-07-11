@@ -13,6 +13,7 @@ import OPTIONS from "../constants/dateFormat";
 // Import Utils Function
 import windDirection from "../utils/windDirection";
 
+// WeatherDaily component
 const WeatherDaily = ({ datas }) => {
     return (
         <DailyCardWrapper>
@@ -64,6 +65,7 @@ const WeatherDaily = ({ datas }) => {
     );
 };
 
+// Styled component
 const DailyCardWrapper = styled.div`
     display: grid;
     flex-wrap: wrap;
@@ -118,4 +120,5 @@ const DailyCardItemTitle = styled.h4`
     font-size: 2rem;
 `;
 
+// Export
 export default WeatherDaily;

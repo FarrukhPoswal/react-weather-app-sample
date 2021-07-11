@@ -25,6 +25,7 @@ import App from './App';
 // React Features
 import reportWebVitals from './reportWebVitals';
 
+// Render to the DOM
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -1,6 +1,10 @@
+// Import React
 import React from "react";
+
+// Import styled component
 import styled from "styled-components/macro";
 
+// WeatherAdress component
 const WeatherAddress = ({ address }) => {
     return (
         <AddressDisplay>
@@ -14,10 +18,12 @@ const WeatherAddress = ({ address }) => {
     );
 };
 
+// Styled component
 const AddressDisplay = styled.div`
     margin: 4rem 0;
     text-align: center;
     font-size: 2rem;
 `;
 
+// Export
 export default WeatherAddress;

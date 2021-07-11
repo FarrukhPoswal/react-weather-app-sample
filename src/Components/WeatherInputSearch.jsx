@@ -1,6 +1,10 @@
+// Import React
 import React from "react";
+
+// Import styled component
 import styled from "styled-components/macro";
 
+// WeatherInputSearch component
 const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
     return (
         <InputSearchWrapper>
@@ -19,6 +23,7 @@ const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
     );
 };
 
+// Styled component
 const InputSearchWrapper = styled.div`
     width: 30rem;
     margin: 2rem auto;
@@ -43,4 +48,5 @@ const InputSearch = styled.input`
     border-radius: 5px;
 `;
 
+// Export 
 export default WeatherInputSearch;

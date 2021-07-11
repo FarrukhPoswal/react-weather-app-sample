@@ -16,6 +16,7 @@ import * as API_UTILS from "./constants/apiUtils";
 // Import CSS
 import "./App.css";
 
+// App component
 const App = () => {
     // Initialize the state
     const [longitude, setLongitude] = useState("");
@@ -173,4 +174,5 @@ const App = () => {
     );
 };
 
+// Export
 export default App;
