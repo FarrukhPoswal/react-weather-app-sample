@@ -13,9 +13,6 @@ import WEATHER_STATIONS from "./constants/weatherStations";
 import * as API_URL from "./constants/apiUrl";
 import * as API_UTILS from "./constants/apiUtils";
 
-// Import CSS
-import "./App.css";
-
 // App component
 const App = () => {
     // Initialize the state
