@@ -11,7 +11,7 @@ import WeatherDaily from "./Components/WeatherDaily";
 // Import Constants
 import WEATHER_STATIONS from "./constants/weatherStations";
 import * as API_URL from "./constants/apiUrl";
-import * as UTILS from "./constants/utils";
+import * as API_UTILS from "./constants/apiUtils";
 
 // Import CSS
 import "./App.css";
@@ -54,10 +54,10 @@ const App = () => {
     useEffect(() => {
         const apiCallHandler = async () => {
             const fetchData = await fetch(
-                `${API_URL.API_URL_WEATHERDATA}/${UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${UTILS.API_OPTIONS}&units=${UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
+                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
             const dataJson = await fetchData.json();
             setDatas(dataJson);
-            // console.log(dataJson);
+            console.log(dataJson);
         };
 
         if (longitude !== "" && latitude !== "") {

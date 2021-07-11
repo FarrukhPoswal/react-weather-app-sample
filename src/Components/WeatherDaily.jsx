@@ -1,21 +1,25 @@
+// Import React
 import React from "react";
+
+// Import styled components
 import styled from "styled-components/macro";
+
+// Import icons library of openweathermap.org
 import API_ICON_WEATHER from "../constants/iconWeather";
 
-const WeatherDaily = ({ datas }) => {
-    const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
+// Import options for manipulating the date format
+import OPTIONS from "../constants/dateFormat";
 
+// Import Utils Function
+import windDirection from "../utils/windDirection";
+
+const WeatherDaily = ({ datas }) => {
     return (
         <DailyCardWrapper>
             {datas.daily.map((data) => (
                 <DailyCardItem key={data.dt}>
                     <DailyCardItemTitle>
-                        {new Date(data.dt * 1000).toLocaleDateString("fr-FR", options)}
+                        {new Date(data.dt * 1000).toLocaleDateString("fr-FR", OPTIONS)}
                     </DailyCardItemTitle>
                     <img
                         src={`${API_ICON_WEATHER}/${data.weather[0].icon}@2x.png`}
@@ -23,6 +27,9 @@ const WeatherDaily = ({ datas }) => {
                     />
                     <p>Température Maximale : {Math.trunc(data.temp.max)}&deg;C</p>
                     <p>Température Minimale : {Math.trunc(data.temp.min)}&deg;C</p>
+                    <p>Direction du vent : {windDirection(data.wind_deg)}</p>
+                    <p>Vitesse moyenne du vent : {data.wind_speed} km/h</p>
+                    <p>Vitesse en rafale du vent : {data.wind_gust} km/h</p>
                     <p>
                         Levé de soleil :{" "}
                         {new Date(data.sunrise * 1000).toLocaleTimeString(
@@ -96,8 +103,8 @@ const DailyCardWrapper = styled.div`
 `;
 
 const DailyCardItem = styled.div`
-    width: 30rem;
-    margin: 4rem;
+    width: 34rem;
+    margin: 2rem;
     padding: 3rem;
     display: flex;
     flex-direction: column;
