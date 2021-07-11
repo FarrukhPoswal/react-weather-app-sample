@@ -1,6 +1,6 @@
 // Options utils for manipulating dates
 
-const options = {
+const OPTIONS = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -9,4 +9,4 @@ const options = {
 
 // Export
 
-export default options;
+export default OPTIONS;
