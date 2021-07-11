@@ -1,11 +1,18 @@
+// Import React
 import React, { useState, useEffect } from "react";
+
+// Import Components
 import WeatherList from "./Components/WeatherList";
 import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
 import WeatherCurrent from "./Components/WeatherCurrent";
 import WeatherDaily from "./Components/WeatherDaily";
+
+// Import Constants
 import WEATHER_STATIONS from "./constants/weatherStations";
 import * as API_URL from "./constants/apiUrl";
+
+// Import CSS
 import "./App.css";
 
 const App = () => {
@@ -26,7 +33,7 @@ const App = () => {
     const [datas, setDatas] = useState([]);
     const [cityGeo, setCityGeo] = useState([]);
 
-    // Display or intialize the right location
+    // Display or initialize the right location
     const handleLocations = (event) => {
         if (event !== "" && event !== undefined) {
             setLongitude(event.slice(0, -8));
