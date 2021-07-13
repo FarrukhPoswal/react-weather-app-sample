@@ -19,6 +19,7 @@ const App = () => {
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
     const [locationSearch, setLocationSearch] = useState("");
+    const [postalCode, setPostalCode] = useState("");
     const [currentLocation, setCurrentLocation] = useState([
         longitude,
         latitude,
@@ -39,7 +40,7 @@ const App = () => {
         }
     };
 
-    // Search the location in input field
+    // Search the location in input field by city
     const handleInputValueSearch = (event) => {
         if (event !== "") {
             setLocationSearch(event)
@@ -48,6 +49,14 @@ const App = () => {
         }
     };
 
+    // Search the location in input field by postal code
+    const handleInputValuePostalCode = (event) => {
+        if (event !== "") {
+            setPostalCode(event);
+        }
+    };
+
+            
     // API Call to get datas from openweathermap.org
     useEffect(() => {
         const apiCallHandler = async () => {
@@ -113,13 +122,24 @@ const App = () => {
             const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}`);
             const addressJson = await fetchAddress.json();
             setCityGeo(addressJson);
+            console.log(addressJson);
+        }
+
+        const fetchCityGeoByPostalCode = async () => {
+            const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}&postcode=${postalCode}`);
+            const addressJson = await fetchAddress.json();
+            setCityGeo(addressJson);
             // console.log(addressJson);
         }
 
-        if (locationSearch !== "") {
+        if (locationSearch !== "" && postalCode === "") {
             fetchCityGeo();
         }
-    }, [locationSearch]);
+
+        if (postalCode !== "" && locationSearch !== "") {
+            fetchCityGeoByPostalCode();
+        }
+    }, [locationSearch, postalCode]);
 
     // Set the latitude and longitude of the current location or the input field
     useEffect(() => {
@@ -147,7 +167,9 @@ const App = () => {
 
             <WeatherInputSearch
                 handleInputValueSearch={handleInputValueSearch}
+                handleInputPostalSearch={handleInputValuePostalCode}
                 locationSearch={locationSearch}
+                postalCode={postalCode}
             />
 
             {typeof address.localityInfo !== "undefined" ? (

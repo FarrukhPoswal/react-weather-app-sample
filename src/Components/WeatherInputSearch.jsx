@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components/macro";
 
 // WeatherInputSearch component
-const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
+const WeatherInputSearch = ({ handleInputValueSearch, handleInputPostalSearch, locationSearch, postalCode }) => {
     return (
         <InputSearchWrapper>
             <LabelInputSearch>Rechercher une localité</LabelInputSearch>
@@ -21,6 +21,14 @@ const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
                         handleInputValueSearch(event.target.value)
                     }
                 />
+                <InputSearch
+                    type="text"
+                    placeholder="Code postal"
+                    value={postalCode}
+                    onChange={(event) =>
+                        handleInputPostalSearch(event.target.value)
+                    }
+                />
             </InputWrapper>
         </InputSearchWrapper>
     );
@@ -29,7 +37,9 @@ const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
 // WeatherInputSearch component propTypes
 WeatherInputSearch.propTypes = {
     handleInputValueSearch: PropTypes.func.isRequired,
-    locationSearch: PropTypes.string.isRequired
+    handleInputPostalSearch: PropTypes.func.isRequired,
+    locationSearch: PropTypes.string.isRequired,
+    postalCode: PropTypes.string.isRequired
 };
 
 // Styled component
