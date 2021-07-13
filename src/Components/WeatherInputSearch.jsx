@@ -13,6 +13,9 @@ const WeatherInputSearch = ({ handleInputValueSearch, handleInputPostalSearch, l
         <InputSearchWrapper>
             <LabelInputSearch>Rechercher une localité</LabelInputSearch>
             <InputWrapper>
+                <LabelItemInputSearch>
+                   1. Entrez la localité recherchée
+                </LabelItemInputSearch>
                 <InputSearch
                     type="text"
                     placeholder="Paris"
@@ -21,6 +24,9 @@ const WeatherInputSearch = ({ handleInputValueSearch, handleInputPostalSearch, l
                         handleInputValueSearch(event.target.value)
                     }
                 />
+                <LabelItemInputSearch>
+                    2. Si votre localité recherchée n'est pas celle désirée, entrez le code postal de votre localité
+                </LabelItemInputSearch>
                 <InputSearch
                     type="text"
                     placeholder="Code postal"
@@ -44,19 +50,25 @@ WeatherInputSearch.propTypes = {
 
 // Styled component
 const InputSearchWrapper = styled.div`
-    width: 30rem;
+    width: 25rem;
     margin: 2rem auto;
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 `;
 
-const LabelInputSearch = styled.label`
+const LabelInputSearch = styled.h2`
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
 `;
 
+const LabelItemInputSearch = styled.label`
+    font-size: 1.6rem;
+`;
+
 const InputWrapper = styled.div`
     display: flex;
+    flex-direction: column;
 `;
 
 const InputSearch = styled.input`

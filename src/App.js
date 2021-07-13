@@ -35,6 +35,7 @@ const App = () => {
             setLatitude(event.slice(7));
         } else {
             setLocationSearch("");
+            setPostalCode("");
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
@@ -53,6 +54,8 @@ const App = () => {
     const handleInputValuePostalCode = (event) => {
         if (event !== "") {
             setPostalCode(event);
+        } else {
+            handleLocations();
         }
     };
 
