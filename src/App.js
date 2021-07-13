@@ -55,7 +55,7 @@ const App = () => {
                 `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
             const dataJson = await fetchData.json();
             setDatas(dataJson);
-            console.log(dataJson);
+            // console.log(dataJson);
         };
 
         if (longitude !== "" && latitude !== "") {

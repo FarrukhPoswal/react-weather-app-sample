@@ -1,6 +1,9 @@
 // Import React
 import React from "react";
 
+// Import PropTypes
+import PropTypes from "prop-types";
+
 // Import styled components
 import styled from "styled-components/macro";
 
@@ -63,6 +66,11 @@ const WeatherDaily = ({ datas }) => {
             ))}
         </DailyCardWrapper>
     );
+};
+
+// WeatherDaily component propTypes
+WeatherDaily.propTypes = {
+    datas: PropTypes.object.isRequired,
 };
 
 // Styled component

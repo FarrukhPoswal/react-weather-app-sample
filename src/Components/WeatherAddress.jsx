@@ -1,6 +1,9 @@
 // Import React
 import React from "react";
 
+// Import PropTypes
+import PropTypes from "prop-types";
+
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -16,6 +19,11 @@ const WeatherAddress = ({ address }) => {
             </p>
         </AddressDisplay>
     );
+};
+
+// WeatherAddress component propTypes
+WeatherAddress.propTypes = {
+    address: PropTypes.object.isRequired
 };
 
 // Styled component

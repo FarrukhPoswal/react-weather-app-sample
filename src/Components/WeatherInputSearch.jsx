@@ -1,6 +1,9 @@
 // Import React
 import React from "react";
 
+// Import PropTypes
+import PropTypes from "prop-types";
+
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -21,6 +24,12 @@ const WeatherInputSearch = ({ handleInputValueSearch, locationSearch }) => {
             </InputWrapper>
         </InputSearchWrapper>
     );
+};
+
+// WeatherInputSearch component propTypes
+WeatherInputSearch.propTypes = {
+    handleInputValueSearch: PropTypes.func.isRequired,
+    locationSearch: PropTypes.string.isRequired
 };
 
 // Styled component

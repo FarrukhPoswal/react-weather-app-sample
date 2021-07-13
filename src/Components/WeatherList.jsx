@@ -1,6 +1,9 @@
 // Import React
 import React from "react";
 
+// Import PropTypes
+import PropTypes from "prop-types";
+
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -24,6 +27,12 @@ const WeatherList = ({ locations, handleLocations}) => {
             </ListSelect>
         </List>
     );
+};
+
+// WeatherList component propTypes
+WeatherList.propTypes = {
+    locations: PropTypes.array.isRequired,
+    handleLocations: PropTypes.func.isRequired
 };
 
 // Styled component

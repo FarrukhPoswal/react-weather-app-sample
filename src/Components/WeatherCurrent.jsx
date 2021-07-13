@@ -1,6 +1,9 @@
 // Import React
 import React from "react";
 
+// Import PropTypes
+import PropTypes from "prop-types";
+
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -25,6 +28,11 @@ const WeatherCurrent = ({ datas }) => {
         </CurrentCard>
     );
 };
+
+// WeatherCurrent component propTypes
+WeatherCurrent.propTypes = {
+    datas: PropTypes.object.isRequired
+}; 
 
 // Styled component
 const CurrentCard = styled.div`
