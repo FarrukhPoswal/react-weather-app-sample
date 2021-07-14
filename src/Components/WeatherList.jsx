@@ -38,7 +38,8 @@ WeatherList.propTypes = {
 // Styled component
 const List = styled.div`
     width: 32rem;
-    margin: 2rem auto;
+    margin: 0 auto 2rem;
+    padding-top: 2rem;
     display: block;
     font-size: 1.8rem;
 `;
