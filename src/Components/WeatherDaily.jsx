@@ -7,6 +7,9 @@ import PropTypes from "prop-types";
 // Import styled components
 import styled from "styled-components/macro";
 
+// Import theme
+import cardTheme from '../theming/cardTheme';
+
 // Import icons library of openweathermap.org
 import API_ICON_WEATHER from "../constants/iconWeather";
 
@@ -21,7 +24,7 @@ const WeatherDaily = ({ datas }) => {
     return (
         <DailyCardWrapper>
             {datas.daily.map((data) => (
-                <DailyCardItem key={data.dt}>
+                <DailyCardItem key={data.dt} cardTheme={cardTheme}>
                     <DailyCardItemTitle>
                         {new Date(data.dt * 1000).toLocaleDateString("fr-FR", OPTIONS)}
                     </DailyCardItemTitle>
@@ -120,8 +123,11 @@ const DailyCardItem = styled.div`
     flex-direction: column;
     align-items: center;
     font-size: 1.6rem;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: ${cardTheme.border};
+    border-radius: ${cardTheme.borderRadius};
+    box-shadow: ${cardTheme.boxShadow};
+    background-color: ${cardTheme.backgroundColor};
+    backdrop-filter: ${cardTheme.backdropFilter};
 `;
 
 const DailyCardItemTitle = styled.h4`

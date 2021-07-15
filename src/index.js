@@ -24,7 +24,7 @@ import App from './App';
 import styled from 'styled-components/macro';
 
 // Import theme
-import theme from './theming/theme';
+import appTheme from './theming/appTheme';
 
 // Import Utils Function
 import getHour from './utils/getHour'
@@ -40,22 +40,22 @@ import reportWebVitals from './reportWebVitals';
 // Styled component
 
 const AppWrapper = styled.div`
- color: ${getHour() === "day" ?
-    theme.day.color :
-    theme.night.color};
+ color: white;
   background-image: url(${getHour() === "day" ?
-    theme.day.backgroundImage :
-    theme.night.backgroundImage});
+    appTheme.day.backgroundImage :
+    appTheme.night.backgroundImage});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-`
+  background-color: gray;
+  background-blend-mode: multiply;
+`;
 
 // Render to the DOM
 ReactDOM.render(
   <React.StrictMode>
-    <AppWrapper theme={theme}>
+    <AppWrapper appTheme={appTheme}>
       <App />
     </AppWrapper>
   </React.StrictMode>,

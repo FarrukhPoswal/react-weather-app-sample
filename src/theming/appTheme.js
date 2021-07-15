@@ -1,20 +1,18 @@
-// Create a theme object
+// Create a theme object for App component
 import THEME_DAY_IMAGE from '../img/day.jpg';
 import THEME_NIGHT_IMAGE from '../img/night.jpg';
 
-const theme = {
+const appTheme = {
     day: {
         backgroundImage: THEME_DAY_IMAGE,
-        color: "black",
     },
     night: {
         backgroundImage: THEME_NIGHT_IMAGE,
-        color: "white",
     },
 };
 
 // Export
-export default theme;
+export default appTheme;
 
 
 
