@@ -14,6 +14,9 @@ Use Your API KEY to get weather data from openweather.com
 npm start
 ````
 
-#### No library dependencies needed!
+#### chart.js needed to display the weather chart.com
+````
+npm install chart.js
+````
 
 
