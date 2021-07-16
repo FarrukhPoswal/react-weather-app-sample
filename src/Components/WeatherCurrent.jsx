@@ -21,31 +21,48 @@ const WeatherCurrent = ({ datas }) => {
     );
 
     return (
-        <CurrentCard>
-            <p>Actullement à {currentTime}</p>
-            <img
-                src={`${API_ICON_WEATHER}/${datas.current.weather[0].icon}@2x.png`}
-                alt="weather icon"
-            />
-            <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>
-        </CurrentCard>
+        <CurrentWrapper>
+            <CurrentCard>
+                <p>Actullement à {currentTime}</p>
+                <img
+                    src={`${API_ICON_WEATHER}/${datas.current.weather[0].icon}@2x.png`}
+                    alt="weather icon"
+                />
+                <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>
+            </CurrentCard>
+            <Canvas id="canvas__temp" />
+        </CurrentWrapper>
     );
 };
 
 // WeatherCurrent component propTypes
 WeatherCurrent.propTypes = {
     datas: PropTypes.object.isRequired
-}; 
+};
 
 // Styled component
+const CurrentWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+`;
+
 const CurrentCard = styled.div`
     padding: 3rem;
-    margin: 1rem auto;
+    margin: 1rem;
     width: 20rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     font-size: 1.6rem;
+    border: ${cardTheme.border};
+    border-radius: ${cardTheme.borderRadius};
+    box-shadow: ${cardTheme.boxShadow};
+    background-color: ${cardTheme.backgroundColor};
+    backdrop-filter: ${cardTheme.backdropFilter};
+`;
+
+const Canvas = styled.canvas`
+    width: 30rem;
+    height: 30rem;
     border: ${cardTheme.border};
     border-radius: ${cardTheme.borderRadius};
     box-shadow: ${cardTheme.boxShadow};
