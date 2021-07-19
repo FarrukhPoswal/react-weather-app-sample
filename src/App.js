@@ -6,6 +6,7 @@ import WeatherList from "./Components/WeatherList";
 import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
 import WeatherCurrent from "./Components/WeatherCurrent";
+import WeatherChart from "./Components/WeatherChart";
 import WeatherDaily from "./Components/WeatherDaily";
 
 // Import Constants
@@ -183,6 +184,12 @@ const App = () => {
 
             {typeof datas.current !== "undefined" ? (
                 <WeatherCurrent datas={datas} />
+            ) : (
+                <div></div>
+            )}
+
+            {typeof datas.current !== "undefined" ? (
+                <WeatherChart datas={datas} />
             ) : (
                 <div></div>
             )}

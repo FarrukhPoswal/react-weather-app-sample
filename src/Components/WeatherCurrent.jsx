@@ -4,9 +4,6 @@ import React from "react";
 // Import PropTypes
 import PropTypes from "prop-types";
 
-// Import Line from ChartJS
-import { Bar } from "react-chartjs-2";
-
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -18,35 +15,24 @@ import API_ICON_WEATHER from "../constants/iconWeather";
 
 // WeatherCurrent component
 const WeatherCurrent = ({ datas }) => {
-    const currentTime = new Date().toLocaleTimeString(
-        "fr-FR",
-        { hour: "2-digit", minute: "2-digit" }
-    );
-
-    const data = () => {
-        return {
-            datasets:[{
-                backgroundColor: (10, 10, 10, 0.3),
-            }]
-        };
-    };
+    const currentTime = new Date().toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
 
     return (
-        <CurrentWrapper>    
+        <CurrentWrapper>
             <CurrentCard>
                 <p>Actullement à {currentTime}</p>
                 <img
                     src={`${API_ICON_WEATHER}/${datas.current.weather[0].icon}@2x.png`}
                     alt="weather icon"
                 />
-                <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>
+                <p>
+                    Température actuelle : {Math.trunc(datas.current.temp)}
+                    &deg;C
+                </p>
             </CurrentCard>
-            <Bar 
-                data={data}
-                width={200}
-                height={200}
-                options={{ maintainAspectRatio: false }}
-            />
         </CurrentWrapper>
     );
 };
