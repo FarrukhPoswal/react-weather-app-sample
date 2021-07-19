@@ -4,6 +4,9 @@ import React from "react";
 // Import PropTypes
 import PropTypes from "prop-types";
 
+// Import Line from ChartJS
+import { Bar } from "react-chartjs-2";
+
 // Import styled component
 import styled from "styled-components/macro";
 
@@ -20,8 +23,16 @@ const WeatherCurrent = ({ datas }) => {
         { hour: "2-digit", minute: "2-digit" }
     );
 
+    const data = () => {
+        return {
+            datasets:[{
+                backgroundColor: (10, 10, 10, 0.3),
+            }]
+        };
+    };
+
     return (
-        <CurrentWrapper>
+        <CurrentWrapper>    
             <CurrentCard>
                 <p>Actullement à {currentTime}</p>
                 <img
@@ -30,7 +41,12 @@ const WeatherCurrent = ({ datas }) => {
                 />
                 <p>Température actuelle : {Math.trunc(datas.current.temp)}&deg;C</p>
             </CurrentCard>
-            <Canvas id="canvas__temp" />
+            <Bar 
+                data={data}
+                width={200}
+                height={200}
+                options={{ maintainAspectRatio: false }}
+            />
         </CurrentWrapper>
     );
 };
@@ -53,16 +69,6 @@ const CurrentCard = styled.div`
     margin: 1rem;
     width: 20rem;
     font-size: 1.6rem;
-    border: ${cardTheme.border};
-    border-radius: ${cardTheme.borderRadius};
-    box-shadow: ${cardTheme.boxShadow};
-    background-color: ${cardTheme.backgroundColor};
-    backdrop-filter: ${cardTheme.backdropFilter};
-`;
-
-const Canvas = styled.canvas`
-    width: 30rem;
-    height: 30rem;
     border: ${cardTheme.border};
     border-radius: ${cardTheme.borderRadius};
     box-shadow: ${cardTheme.boxShadow};
