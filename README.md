@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### A simple weather app built with ReactJS
 
 ````
-Use Your API KEY to get weather data from openweather.com
+Use Your API KEY to get weather data from openweather.com and bigdatacloud.com
 ````
 
 ### Start your app with
