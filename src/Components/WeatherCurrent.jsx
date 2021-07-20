@@ -23,7 +23,7 @@ const WeatherCurrent = ({ datas }) => {
     return (
         <CurrentWrapper>
             <CurrentCard>
-                <p>Actullement à {currentTime}</p>
+                <p>Actuellement à {currentTime}</p>
                 <img
                     src={`${API_ICON_WEATHER}/${datas.current.weather[0].icon}@2x.png`}
                     alt="weather icon"

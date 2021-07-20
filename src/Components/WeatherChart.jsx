@@ -18,25 +18,27 @@ const WeatherChart = ({ datas }) => {
         labels: datas.daily.map((data) =>
             new Date(data.dt * 1000).toLocaleDateString("fr-FR")
         ),
-        datasets: 
-            [{
+        datasets: [
+            {
                 label: "Température de la semaine",
                 data: datas.daily.map((data) => data.temp.max),
                 backgroundColor: "rgba(255, 255, 255, 0.8)",
                 borderColor: "rgba(255, 255, 255, 0.3)",
-            }],
+            },
+        ],
     };
 
     const chartDataRain = {
         labels: datas.daily.map((data) =>
             new Date(data.dt * 1000).toLocaleDateString("fr-FR")
         ),
-        datasets: 
-            [{
-                    label: "Précipitations de la semaine",
-                    data: datas.daily.map((data) => data.rain),
-                    backgroundColor: "rgba(44, 130, 201, 0.8)",
-            }],
+        datasets: [
+            {
+                label: "Précipitations de la semaine",
+                data: datas.daily.map((data) => data.rain),
+                backgroundColor: "rgba(44, 130, 201, 0.8)",
+            },
+        ],
     };
 
     const chartOptions = {
@@ -64,20 +66,13 @@ const WeatherChart = ({ datas }) => {
         },
     };
 
-
     return (
         <ChartWrapper>
             <DataChartWrapper>
-                <Line
-                    data={chartDataTemp}
-                    options={chartOptions}
-                />
+                <Line data={chartDataTemp} options={chartOptions} />
             </DataChartWrapper>
             <DataChartWrapper>
-                <Bar
-                    data={chartDataRain}
-                    options={chartOptions}
-                />
+                <Bar data={chartDataRain} options={chartOptions} />
             </DataChartWrapper>
         </ChartWrapper>
     );

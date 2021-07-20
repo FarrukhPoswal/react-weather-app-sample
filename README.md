@@ -14,9 +14,8 @@ Use Your API KEY to get weather data from openweather.com and bigdatacloud.com
 npm start
 ````
 
-#### Library needed
-Styled Components for React
-Chart.js for React
+### Library needed
+Styled Components for React / Chart.js for React
 ````
 npm install --save styled-components
 npm install --save react-chartjs-2 chart.js
