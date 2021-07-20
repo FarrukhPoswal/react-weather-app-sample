@@ -7,7 +7,7 @@ Use your API key to get weather data from openweathermap.org
 Start your app with:
 npm start
 
-No library dependencies needed!
+chart.js for React needed to display the weather chart
 */
 
 // Import React
