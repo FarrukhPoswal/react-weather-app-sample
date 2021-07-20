@@ -59,8 +59,7 @@ const App = () => {
             handleLocations();
         }
     };
-
-            
+     
     // API Call to get datas from openweathermap.org
     useEffect(() => {
         const apiCallHandler = async () => {
