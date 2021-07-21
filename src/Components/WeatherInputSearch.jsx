@@ -53,7 +53,11 @@ const InputSearchWrapper = styled.div`
     width: 25rem;
     margin: 2rem auto;
     display: block;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    @media (min-width: 576px) {
+        width: 40rem;
+        font-size: 2.2rem;
+    }
 `;
 
 const LabelInputSearch = styled.h2`
@@ -63,7 +67,7 @@ const LabelInputSearch = styled.h2`
 `;
 
 const LabelItemInputSearch = styled.label`
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 `;
 
 const InputWrapper = styled.div`

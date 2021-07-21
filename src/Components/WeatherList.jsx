@@ -38,15 +38,23 @@ WeatherList.propTypes = {
 // Styled component
 const List = styled.div`
     width: 32rem;
-    margin: 0 auto 2rem;
-    padding-top: 2rem;
+    margin: 0 auto 3rem;
+    padding-top: 4rem;
     display: block;
     font-size: 1.8rem;
+    @media (min-width: 1024px) {
+        width: 45rem;
+    }
 `;
 
 const ListLabel = styled.label`
     display: flex;
     justify-content: center;
+    font-size: 2rem;
+    text-align: center;
+    @media (min-width: 576px) {
+        font-size: 2.2rem;
+    }
 `;
 
 const ListSelect = styled.select`
