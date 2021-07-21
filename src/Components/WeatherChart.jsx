@@ -28,6 +28,41 @@ const WeatherChart = ({ datas }) => {
         ],
     };
 
+    const chartOptionsTemp = {
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 18,
+                    },
+                    color: "rgba(255, 255, 255, 1)",
+                },
+            },
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "Jour",
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
+                ticks: {
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: "°C",
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
+                ticks: {
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
+            },
+        },
+    };
+
     const chartDataRain = {
         labels: datas.daily.map((data) =>
             new Date(data.dt * 1000).toLocaleDateString("fr-FR")
@@ -41,7 +76,7 @@ const WeatherChart = ({ datas }) => {
         ],
     };
 
-    const chartOptions = {
+    const chartOptionsRain = {
         plugins: {
             legend: {
                 labels: {
@@ -54,11 +89,21 @@ const WeatherChart = ({ datas }) => {
         },
         scales: {
             x: {
+                title: {
+                    display: true,
+                    text: "Jour",
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                 },
             },
             y: {
+                title: {
+                    display: true,
+                    text: "mm",
+                    color: "rgba(255, 255, 255, 0.8)",
+                },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                 },
@@ -69,10 +114,10 @@ const WeatherChart = ({ datas }) => {
     return (
         <ChartWrapper>
             <DataChartWrapper>
-                <Line data={chartDataTemp} options={chartOptions} />
+                <Line data={chartDataTemp} options={chartOptionsTemp} />
             </DataChartWrapper>
             <DataChartWrapper>
-                <Bar data={chartDataRain} options={chartOptions} />
+                <Bar data={chartDataRain} options={chartOptionsRain} />
             </DataChartWrapper>
         </ChartWrapper>
     );
