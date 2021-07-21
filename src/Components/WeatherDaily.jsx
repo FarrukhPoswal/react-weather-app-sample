@@ -55,6 +55,9 @@ const WeatherDaily = ({ datas }) => {
                         Rafale : <Data>{Math.trunc(data.wind_gust)} km/h</Data>
                     </DataWrapper>
                     <DataWrapper>
+                        Pluie : <Data>{data.rain ? Math.trunc(data.rain) : "0"} mm</Data>
+                    </DataWrapper>
+                    <DataWrapper>
                         Levé de soleil :{" "}
                         <Data>
                             {new Date(data.sunrise * 1000).toLocaleTimeString(
