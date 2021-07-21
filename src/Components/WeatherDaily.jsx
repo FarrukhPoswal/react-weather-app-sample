@@ -28,12 +28,13 @@ const WeatherDaily = ({ datas }) => {
                     <DailyCardItemTitle>
                         {new Date(data.dt * 1000).toLocaleDateString(
                             "fr-FR",
-                            OPTIONS
+                            OPTIONS.option_card
                         )}
                     </DailyCardItemTitle>
                     <img
                         src={`${API_ICON_WEATHER}/${data.weather[0].icon}@2x.png`}
                         alt="weather icon"
+                        width="120px"
                     />
                     <DataWrapper>
                         Temp. Max :{" "}
@@ -48,10 +49,10 @@ const WeatherDaily = ({ datas }) => {
                         <Data>{windDirection(data.wind_deg)}</Data>
                     </DataWrapper>
                     <DataWrapper>
-                        Vitesse du vent : <Data>{data.wind_speed} km/h</Data>
+                        Vitesse du vent : <Data>{Math.trunc(data.wind_speed)} km/h</Data>
                     </DataWrapper>
                     <DataWrapper>
-                        Rafale : <Data>{data.wind_gust} km/h</Data>
+                        Rafale : <Data>{Math.trunc(data.wind_gust)} km/h</Data>
                     </DataWrapper>
                     <DataWrapper>
                         Levé de soleil :{" "}
@@ -172,7 +173,7 @@ const DataWrapper = styled.p`
 
 const Data = styled.span`
     margin-left: 1rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     @media (min-width: 576px) {
         font-size: 2.5rem;
     }

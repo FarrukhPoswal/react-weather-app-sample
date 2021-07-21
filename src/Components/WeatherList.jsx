@@ -61,6 +61,8 @@ const ListSelect = styled.select`
     width: 100%;
     margin: 2rem 0;
     padding: 1rem;
+    outline: none;
+    border-radius: 5px;
 `;
 
 // Export

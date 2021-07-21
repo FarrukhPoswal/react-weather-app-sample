@@ -1,11 +1,17 @@
 // Options utils for manipulating dates
 
 const OPTIONS = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    option_card: {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+    },
+    option_chart: {
+        month: "numeric",
+        day: "numeric",
+    },
 };
+
 
 // Export
 

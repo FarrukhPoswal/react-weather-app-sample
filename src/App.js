@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 // Import Components
+import Loader from './Components/Loader'
 import WeatherList from "./Components/WeatherList";
 import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
@@ -14,9 +15,13 @@ import WEATHER_STATIONS from "./constants/weatherStations";
 import * as API_URL from "./constants/apiUrl";
 import * as API_UTILS from "./constants/apiUtils";
 
+// Import CSS
+import './style/app.css';
+
 // App component
 const App = () => {
     // Initialize the state
+    const [loading, setLoading] = useState(true);
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
     const [locationSearch, setLocationSearch] = useState("");
@@ -35,11 +40,11 @@ const App = () => {
             setLongitude(event.slice(0, -8));
             setLatitude(event.slice(7));
         } else {
-            setLocationSearch("");
-            setPostalCode("");
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
+        setLocationSearch("");
+        setPostalCode("");
     };
 
     // Search the location in input field by city
@@ -59,36 +64,13 @@ const App = () => {
             handleLocations();
         }
     };
-     
-    // API Call to get datas from openweathermap.org
+
+    // Loading App, display loader during 4000ms
     useEffect(() => {
-        const apiCallHandler = async () => {
-            const fetchData = await fetch(
-                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
-            const dataJson = await fetchData.json();
-            setDatas(dataJson);
-            // console.log(dataJson);
-        };
-
-        if (longitude !== "" && latitude !== "") {
-            apiCallHandler();
-        }
-    }, [latitude, longitude]);
-
-    // API Call to display the location by longitude and latitude
-    useEffect(() => {
-        const reverseGeocodeCallHandler = async () => {
-            const fetchAddress = await fetch(
-                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
-            const addressJson = await fetchAddress.json();
-            setAddress(addressJson);
-            // console.log(addressJson);
-        };
-
-        if (longitude !== "" && latitude !== "") {
-            reverseGeocodeCallHandler();
-        }
-    }, [longitude, latitude])
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
+    }, []);
 
     // Set the current location
     useEffect(() => {
@@ -119,13 +101,43 @@ const App = () => {
         }
     }, [currentLocation, latitude, longitude])
 
+    // API Call to display the location by longitude and latitude
+    useEffect(() => {
+        const reverseGeocodeCallHandler = async () => {
+            const fetchAddress = await fetch(
+                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
+            const addressJson = await fetchAddress.json();
+            setAddress(addressJson);
+            // console.log(addressJson);
+        };
+
+        if (longitude !== "" && latitude !== "") {
+            reverseGeocodeCallHandler();
+        }
+    }, [longitude, latitude])
+
+    // API Call to get datas from openweathermap.org
+    useEffect(() => {
+        const apiCallHandler = async () => {
+            const fetchData = await fetch(
+                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
+            const dataJson = await fetchData.json();
+            setDatas(dataJson);
+            // console.log(dataJson);
+        };
+
+        if (longitude !== "" && latitude !== "") {
+            apiCallHandler();
+        }
+    }, [latitude, longitude]);
+
     // API call to find and search the right location in the input field
     useEffect(() => {
         const fetchCityGeo = async () => {
             const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}`);
             const addressJson = await fetchAddress.json();
             setCityGeo(addressJson);
-            console.log(addressJson);
+            // console.log(addressJson);
         }
 
         const fetchCityGeoByPostalCode = async () => {
@@ -161,8 +173,12 @@ const App = () => {
         }
     }, [cityGeo, currentLocation]);
 
-    return (
-        <div className="App">
+    return loading ? (
+        <div className="fade-out">
+            <Loader />
+        </div>
+    ) : (
+        <div className={`App ${loading ? '' : 'fade-in'}`}>
             <WeatherList
                 locations={WEATHER_STATIONS}
                 handleLocations={handleLocations}

@@ -79,7 +79,6 @@ const InputSearch = styled.input`
     width: 100%;
     margin: 2rem 0;
     padding: 1rem;
-    border: 1px solid black;
     border-radius: 5px;
 `;
 

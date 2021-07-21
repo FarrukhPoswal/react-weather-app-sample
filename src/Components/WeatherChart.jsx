@@ -13,10 +13,13 @@ import styled from "styled-components/macro";
 // Import theme
 import cardTheme from '../theming/cardTheme';
 
+// Import options for manipulating the date format
+import OPTIONS from "../constants/dateFormat";
+
 const WeatherChart = ({ datas }) => {
     const chartDataTemp = {
         labels: datas.daily.map((data) =>
-            new Date(data.dt * 1000).toLocaleDateString("fr-FR")
+            new Date(data.dt * 1000).toLocaleDateString("fr-FR", OPTIONS.option_chart)
         ),
         datasets: [
             {
@@ -41,11 +44,6 @@ const WeatherChart = ({ datas }) => {
         },
         scales: {
             x: {
-                title: {
-                    display: true,
-                    text: "Jour",
-                    color: "rgba(255, 255, 255, 0.8)",
-                },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                 },
@@ -68,7 +66,7 @@ const WeatherChart = ({ datas }) => {
 
     const chartDataRain = {
         labels: datas.daily.map((data) =>
-            new Date(data.dt * 1000).toLocaleDateString("fr-FR")
+            new Date(data.dt * 1000).toLocaleDateString("fr-FR", OPTIONS.option_chart)
         ),
         datasets: [
             {
@@ -92,11 +90,6 @@ const WeatherChart = ({ datas }) => {
         },
         scales: {
             x: {
-                title: {
-                    display: true,
-                    text: "Jour",
-                    color: "rgba(255, 255, 255, 0.8)",
-                },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                 },

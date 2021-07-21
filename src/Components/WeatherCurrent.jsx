@@ -45,6 +45,7 @@ WeatherCurrent.propTypes = {
 
 // Styled component
 const CurrentWrapper = styled.div`
+    margin: 5rem 0;
     display: flex;
     flex-direction: row;
     align-items: center;

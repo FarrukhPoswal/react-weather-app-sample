@@ -22,6 +22,11 @@ figure {
     margin:0;
 }
 
+input {
+    border: none;
+    outline: none;
+}
+
 input::-moz-focus-inner {
     border:0;
     padding:0;
