@@ -56,6 +56,7 @@ const WeatherChart = ({ datas }) => {
                 },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
+                    precision: 0,
                 },
             },
         },
@@ -102,6 +103,7 @@ const WeatherChart = ({ datas }) => {
                 },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
+                    precision: 0,
                 },
             },
         },
