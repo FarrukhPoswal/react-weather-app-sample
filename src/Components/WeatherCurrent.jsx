@@ -30,7 +30,7 @@ const WeatherCurrent = ({ datas }) => {
                         alt="weather icon"
                     />
                     <CurrentTemp>
-                        {Math.trunc(datas.current.temp)}&deg;C
+                        {Math.round(datas.current.temp)}&deg;C
                     </CurrentTemp>
                 </CurrentWeatherWrapper>
             </CurrentCard>

@@ -64,10 +64,15 @@ const WEATHER_STATIONS = [
     {
         id: 11,
         name: "Brest",
-        latitude: 48.3931,
-        longitude: -4.4922,
+        latitude: "48.3931",
+        longitude: "-4.4922",
     },
-    
+    {
+        id: 12,
+        name: "Bordeaux",
+        latitude: "48.3931",
+        longitude: "-0.5727",
+    },
     // {
     //     id: 1,
     //     name: "Plateau d'Emparis",

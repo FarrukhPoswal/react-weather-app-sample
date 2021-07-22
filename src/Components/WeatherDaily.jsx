@@ -38,24 +38,24 @@ const WeatherDaily = ({ datas }) => {
                     />
                     <DataWrapper>
                         Temp. Max :{" "}
-                        <TempMax>{Math.trunc(data.temp.max)}&deg;C</TempMax>
+                        <TempMax>{Math.round(data.temp.max)}&deg;C</TempMax>
                     </DataWrapper>
                     <DataWrapper>
                         Temp. Min :{" "}
-                        <TempMin>{Math.trunc(data.temp.min)}&deg;C</TempMin>
+                        <TempMin>{Math.round(data.temp.min)}&deg;C</TempMin>
                     </DataWrapper>
                     <DataWrapper>
                         Direction du vent :{" "}
                         <Data>{windDirection(data.wind_deg)}</Data>
                     </DataWrapper>
                     <DataWrapper>
-                        Vitesse du vent : <Data>{Math.trunc(data.wind_speed)} km/h</Data>
+                        Vitesse du vent : <Data>{Math.round(data.wind_speed)} km/h</Data>
                     </DataWrapper>
                     <DataWrapper>
-                        Rafale : <Data>{Math.trunc(data.wind_gust)} km/h</Data>
+                        Rafale : <Data>{Math.round(data.wind_gust)} km/h</Data>
                     </DataWrapper>
                     <DataWrapper>
-                        Pluie : <Data>{data.rain ? Math.trunc(data.rain) : "0"} mm</Data>
+                        Pluie : <Data>{data.rain ? (data.rain).toFixed(1) : "0"} mm</Data>
                     </DataWrapper>
                     <DataWrapper>
                         Levé de soleil :{" "}
