@@ -35,10 +35,11 @@ const App = () => {
     const [cityGeo, setCityGeo] = useState([]);
 
     // Display or initialize the right location
-    const handleLocations = (event) => {
-        if (event !== "" && event !== undefined) {
-            setLongitude(event.slice(0, -8));
-            setLatitude(event.slice(7));
+    const handleLocations = (value) => {
+        if (value !== "" && value !== undefined) {
+            const coords = value.replace(',', '').split(' ');
+            setLongitude(coords[0]);
+            setLatitude(coords[1]);
         } else {
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
