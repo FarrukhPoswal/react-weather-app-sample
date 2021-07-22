@@ -128,25 +128,26 @@ WeatherChart.propTypes = {
 
 // Styled component
 const ChartWrapper = styled.div`
-    display: none;
-    @media (min-width: 768px) {
-        height: 80vh;
-        margin: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    @media (min-width: 1024px) {
-        height: 60vh;
-    }
+    margin: 4rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     @media (min-width: 1200px) {
-        height: 30vh;
         flex-direction: row;
+        justify-content: space-around;
     }
 `;
 
 const DataChartWrapper = styled.div`
+    width: 35rem;
+    margin: 3rem 0 3rem 0;
+    padding: 2rem;
+    border: ${cardTheme.border};
+    border-radius: ${cardTheme.borderRadius};
+    box-shadow: ${cardTheme.boxShadow};
+    background-color: ${cardTheme.backgroundColor};
+    backdrop-filter: ${cardTheme.backdropFilter};
     @media (min-width: 768px) {
         width: 50rem;
         margin: 2rem;
