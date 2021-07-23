@@ -56,7 +56,6 @@ const CurrentCard = styled.div`
     padding: 3rem;
     margin: 4rem;
     width: 40rem;
-    border: ${cardTheme.border};
     border-radius: ${cardTheme.borderRadius};
     box-shadow: ${cardTheme.boxShadow};
     background-color: ${cardTheme.backgroundColor};

@@ -172,7 +172,7 @@ const DailyCardWrapper = styled.div`
 `;
 
 const DailyCardItem = styled.div`
-    width: 30rem;
+    width: 32rem;
     margin: 2rem;
     padding: 2rem;
     display: flex;
@@ -180,13 +180,12 @@ const DailyCardItem = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1.8rem;
-    border: ${cardTheme.border};
     border-radius: ${cardTheme.borderRadius};
     box-shadow: ${cardTheme.boxShadow};
     background-color: ${cardTheme.backgroundColor};
     backdrop-filter: ${cardTheme.backdropFilter};
     @media (min-width: 768px) {
-        width: 35rem;
+        width: 35.5rem;
     }
 `;
 

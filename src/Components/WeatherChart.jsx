@@ -143,7 +143,6 @@ const DataChartWrapper = styled.div`
     width: 35rem;
     margin: 3rem 0 3rem 0;
     padding: 2rem;
-    border: ${cardTheme.border};
     border-radius: ${cardTheme.borderRadius};
     box-shadow: ${cardTheme.boxShadow};
     background-color: ${cardTheme.backgroundColor};
@@ -152,11 +151,6 @@ const DataChartWrapper = styled.div`
         width: 50rem;
         margin: 2rem;
         padding: 2rem;
-        border: ${cardTheme.border};
-        border-radius: ${cardTheme.borderRadius};
-        box-shadow: ${cardTheme.boxShadow};
-        background-color: ${cardTheme.backgroundColor};
-        backdrop-filter: ${cardTheme.backdropFilter};
     }
     @media (min-width: 1400px) {
         width: 60rem;
