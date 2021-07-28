@@ -37,6 +37,7 @@ const WeatherChart = ({ datas }) => {
                 labels: {
                     font: {
                         size: 18,
+                        family: 'Poppins',
                     },
                     color: "rgba(255, 255, 255, 1)",
                 },
@@ -46,6 +47,9 @@ const WeatherChart = ({ datas }) => {
             x: {
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
             },
             y: {
@@ -53,15 +57,18 @@ const WeatherChart = ({ datas }) => {
                     display: true,
                     text: "°C",
                     color: "rgba(255, 255, 255, 0.8)",
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                     precision: 0,
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
             },
-        },
-        font: {
-            family: "Arial",
         },
     };
 
@@ -84,6 +91,7 @@ const WeatherChart = ({ datas }) => {
                 labels: {
                     font: {
                         size: 18,
+                        family: 'Poppins',
                     },
                     color: "rgba(255, 255, 255, 1)",
                 },
@@ -93,6 +101,9 @@ const WeatherChart = ({ datas }) => {
             x: {
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
             },
             y: {
@@ -100,10 +111,16 @@ const WeatherChart = ({ datas }) => {
                     display: true,
                     text: "mm",
                     color: "rgba(255, 255, 255, 0.8)",
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
                 ticks: {
                     color: "rgba(255, 255, 255, 0.8)",
                     precision: 0,
+                    font: {
+                        family: 'Poppins',
+                    },
                 },
             },
         },
