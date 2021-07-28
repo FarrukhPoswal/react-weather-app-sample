@@ -213,10 +213,7 @@ const DailyCardItem = styled.div`
 `;
 
 const DailyCardItemTitle = styled.h4`
-    font-size: 2rem;
-    @media (min-width: 768px) {
-        font-size: 2.5rem;
-    }
+    font-size: 2.5rem;
 `;
 
 const SaintOfTheDay = styled.p`
