@@ -8,29 +8,30 @@ import PropTypes from "prop-types";
 import styled from "styled-components/macro";
 
 // Import theme
-import cardTheme from '../theming/cardTheme';
+import cardTheme from "../theming/cardTheme";
 
 // Import icons library of openweathermap.org
 import API_ICON_WEATHER from "../constants/iconWeather";
 
 // Import icon weather
-import tempHot from '../img/weather_icon/temp-hot.svg';
-import tempCold from "../img/weather_icon/temp-cold.svg";
-import windRose from "../img/weather_icon/wind-rose.svg";
-import wind from "../img/weather_icon/wind.svg";
-import windGust from "../img/weather_icon/storm.svg";
-import drop from "../img/weather_icon/drop.svg";
-import sunrise from "../img/weather_icon/sunrise.svg";
-import sunset from "../img/weather_icon/sunset.svg";
-import moonrise from "../img/weather_icon/moonrise.svg";
-import moonset from "../img/weather_icon/moonset.svg";
-import pressure from "../img/weather_icon/pressure.svg";
-import humidity from "../img/weather_icon/humidity.svg";
+import tempHot from "../assets/weather_icon/temp-hot.svg";
+import tempCold from "../assets/weather_icon/temp-cold.svg";
+import windRose from "../assets/weather_icon/wind-rose.svg";
+import wind from "../assets/weather_icon/wind.svg";
+import windGust from "../assets/weather_icon/storm.svg";
+import drop from "../assets/weather_icon/drop.svg";
+import sunrise from "../assets/weather_icon/sunrise.svg";
+import sunset from "../assets/weather_icon/sunset.svg";
+import moonrise from "../assets/weather_icon/moonrise.svg";
+import moonset from "../assets/weather_icon/moonset.svg";
+import pressure from "../assets/weather_icon/pressure.svg";
+import humidity from "../assets/weather_icon/humidity.svg";
 
 // Import options for manipulating the date format
 import OPTIONS from "../constants/dateFormat";
 
 // Import Utils Function
+import getSaintOfTheDay from "../utils/getEphemeris";
 import windDirection from "../utils/windDirection";
 
 // WeatherDaily component
@@ -45,6 +46,12 @@ const WeatherDaily = ({ datas }) => {
                             OPTIONS.option_card
                         )}
                     </DailyCardItemTitle>
+                    <SaintOfTheDay>
+                        {getSaintOfTheDay(
+                            new Date(data.dt * 1000).getMonth(),
+                            new Date(data.dt * 1000).getDate()
+                        )}
+                    </SaintOfTheDay>
                     <img
                         src={`${API_ICON_WEATHER}/${data.weather[0].icon}@2x.png`}
                         alt="weather icon"
@@ -52,11 +59,17 @@ const WeatherDaily = ({ datas }) => {
                     />
                     <DataContainer>
                         <DataWrapper>
-                            <IconWeather src={tempHot} alt="temperature hot icon" />
+                            <IconWeather
+                                src={tempHot}
+                                alt="temperature hot icon"
+                            />
                             <TempMax>{Math.round(data.temp.max)}&deg;C</TempMax>
                         </DataWrapper>
                         <DataWrapper>
-                            <IconWeather src={tempCold} alt="temperature cold icon" />
+                            <IconWeather
+                                src={tempCold}
+                                alt="temperature cold icon"
+                            />
                             <TempMin>{Math.round(data.temp.min)}&deg;C</TempMin>
                         </DataWrapper>
                         <DataWrapper>
@@ -73,7 +86,9 @@ const WeatherDaily = ({ datas }) => {
                         </DataWrapper>
                         <DataWrapper>
                             <IconWeather src={drop} alt="rain drop icon" />
-                            <Data>{data.rain ? data.rain.toFixed(1) : "0"} mm</Data>
+                            <Data>
+                                {data.rain ? data.rain.toFixed(1) : "0"} mm
+                            </Data>
                         </DataWrapper>
                         <DataWrapper>
                             <IconWeather src={pressure} alt="gauge icon" />
@@ -86,37 +101,45 @@ const WeatherDaily = ({ datas }) => {
                         <DataWrapper>
                             <IconWeather src={sunrise} alt="sunrise icon" />
                             <Data>
-                                {new Date(data.sunrise * 1000).toLocaleTimeString(
-                                    "fr-FR",
-                                    { hour: "2-digit", minute: "2-digit" }
-                                )}
+                                {new Date(
+                                    data.sunrise * 1000
+                                ).toLocaleTimeString("fr-FR", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })}
                             </Data>
                         </DataWrapper>
                         <DataWrapper>
                             <IconWeather src={sunset} alt="sunset icon" />
                             <Data>
-                                {new Date(data.sunset * 1000).toLocaleTimeString(
-                                    "fr-FR",
-                                    { hour: "2-digit", minute: "2-digit" }
-                                )}
+                                {new Date(
+                                    data.sunset * 1000
+                                ).toLocaleTimeString("fr-FR", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })}
                             </Data>
                         </DataWrapper>
                         <DataWrapper>
                             <IconWeather src={moonrise} alt="moonrise icon" />
                             <Data>
-                                {new Date(data.moonrise * 1000).toLocaleTimeString(
-                                    "fr-FR",
-                                    { hour: "2-digit", minute: "2-digit" }
-                                )}
+                                {new Date(
+                                    data.moonrise * 1000
+                                ).toLocaleTimeString("fr-FR", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })}
                             </Data>
                         </DataWrapper>
                         <DataWrapper>
                             <IconWeather src={moonset} alt="moonset icon" />
                             <Data>
-                                {new Date(data.moonset * 1000).toLocaleTimeString(
-                                    "fr-FR",
-                                    { hour: "2-digit", minute: "2-digit" }
-                                )}
+                                {new Date(
+                                    data.moonset * 1000
+                                ).toLocaleTimeString("fr-FR", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })}
                             </Data>
                         </DataWrapper>
                     </DataContainer>
@@ -136,10 +159,10 @@ const DailyCardWrapper = styled.div`
     padding-bottom: 4rem;
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas: 
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
         "."
         "."
         "."
@@ -151,23 +174,23 @@ const DailyCardWrapper = styled.div`
     justify-items: center;
 
     @media (min-width: 798px) {
-        grid-template-columns: 1fr 1fr; 
-        grid-template-rows: 1fr 1fr 1fr 1fr; 
-        gap: 0px 0px; 
-        grid-template-areas: 
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
             ". ."
             ". ."
             ". ."
-            ". ."; 
+            ". .";
     }
 
     @media (min-width: 1600px) {
-        grid-template-columns: 1fr 1fr 1fr 1fr; 
-        grid-template-rows: 1fr 1fr; 
-        gap: 0px 0px; 
-        grid-template-areas: 
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
             ". . . ."
-            ". . . ."; 
+            ". . . .";
     }
 `;
 
@@ -196,22 +219,27 @@ const DailyCardItemTitle = styled.h4`
     }
 `;
 
+const SaintOfTheDay = styled.p`
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+`;
+
 const IconWeather = styled.img`
     width: 20%;
 `;
 
 const DataContainer = styled.div`
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
-    gap: 2rem 0; 
-    grid-template-areas: 
-    ". ."
-    ". ."
-    ". ."
-    ". ."
-    ". ."
-    ". ."; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 2rem 0;
+    grid-template-areas:
+        ". ."
+        ". ."
+        ". ."
+        ". ."
+        ". ."
+        ". .";
 `;
 
 const DataWrapper = styled.p`

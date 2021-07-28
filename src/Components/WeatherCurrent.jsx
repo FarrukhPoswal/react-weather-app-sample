@@ -13,9 +13,15 @@ import cardTheme from '../theming/cardTheme';
 // Import icons library of openweathermap.org
 import API_ICON_WEATHER from "../constants/iconWeather";
 
+// Import Utils Function
+import getSaintOfTheDay from "../utils/getEphemeris";
+
 // WeatherCurrent component
 const WeatherCurrent = ({ datas }) => {
-    const currentTime = new Date().toLocaleTimeString("fr-FR", {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth();
+    const currentTime = currentDate.toLocaleTimeString("fr-FR", {
         hour: "2-digit",
         minute: "2-digit",
     });
@@ -33,6 +39,9 @@ const WeatherCurrent = ({ datas }) => {
                         {Math.round(datas.current.temp)}&deg;C
                     </CurrentTemp>
                 </CurrentWeatherWrapper>
+                <SaintOfTheDay>
+                    Nous fêtons {getSaintOfTheDay(currentMonth, currentDay)}
+                </SaintOfTheDay>
             </CurrentCard>
         </CurrentWrapper>
     );
@@ -78,6 +87,10 @@ const CurrentWeatherWrapper = styled.div`
 const CurrentTemp = styled.p`
     margin-right: 2rem;
     font-size: 4.5rem;
+`;
+
+const SaintOfTheDay = styled.p`
+    font-size: 1.8rem;
 `;
 
 // Export

@@ -19,7 +19,6 @@ const WeatherList = ({ locations, handleLocations}) => {
                 {locations.map((location) => (
                     <option
                         key={location.id}
-                        mutliple={true}
                         value={[`${location.longitude}, ${location.latitude}`]}
                     >
                         {location.name}

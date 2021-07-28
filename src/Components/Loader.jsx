@@ -5,7 +5,7 @@ import React from "react";
 import styled from "styled-components/macro";
 
 // Import Loader GIF
-import LoaderApp from '../img/loader.gif';
+import LoaderApp from '../assets/loader.gif';
 
 const Loader = () => {
     return (

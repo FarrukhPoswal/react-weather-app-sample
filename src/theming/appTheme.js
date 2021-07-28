@@ -1,6 +1,6 @@
 // Create a theme object for App component
-import THEME_DAY_IMAGE from '../img/day.jpg';
-import THEME_NIGHT_IMAGE from '../img/night.jpg';
+import THEME_DAY_IMAGE from '../assets/day.jpg';
+import THEME_NIGHT_IMAGE from '../assets/night.jpg';
 
 const appTheme = {
     day: {
