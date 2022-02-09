@@ -90,7 +90,7 @@ const App = () => {
                 ]);
             } catch (error) {
                 window.alert(
-                    `Impossible de localiser votre position: ${error}`
+                    `Impossible de localiser votre position: ${error.message} \n Veuillez activer votre GPS`
                 );
             }
         };
@@ -121,7 +121,7 @@ const App = () => {
     useEffect(() => {
         const apiCallHandler = async () => {
             const fetchData = await fetch(
-                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.API_KEY_OPENWEATHER}`);
+                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.REACT_APP_API_KEY_OPENWEATHER}`);
             const dataJson = await fetchData.json();
             setDatas(dataJson);
             // console.log(dataJson);
