@@ -11,7 +11,8 @@ Use Your API KEY to get weather data from openweather.com and bigdatacloud.com
 
 ### Start your app with
 ````
-npm start
+npm install
+npm run start
 ````
 
 ### Library needed
