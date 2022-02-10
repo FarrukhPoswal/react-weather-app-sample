@@ -105,12 +105,24 @@ const App = () => {
     // API Call to display the location by longitude and latitude
     useEffect(() => {
         const reverseGeocodeCallHandler = async () => {
-            const fetchAddress = await fetch(
-                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`
-            );
-            const addressJson = await fetchAddress.json();
-            setAddress(addressJson);
-            // console.log(addressJson);
+            try {
+                const fetchAddress = await fetch(
+                    `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`
+                );
+                if (fetchAddress.ok) {
+                    const address = await fetchAddress.json();
+                    setAddress(address);
+                } else {
+                    window.alert(
+                        `Nous sommes dans l'impossibilité de déterminer votre adresse. \n 
+                        Veuillez réessayer plus tard \n
+                        AdminLogError ${fetchAddress.status} ${fetchAddress.statusText}`
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+                throw new Error(error);
+            }
         };
 
         if (longitude !== "" && latitude !== "") {
@@ -182,7 +194,7 @@ const App = () => {
                     // console.log(cityGeoJson);
                 } else {
                     window.alert(
-                        ` Nous ne pouvons pas déterminer cette localité \n
+                        `Nous ne pouvons pas déterminer cette localité \n
                         Veuillez réessayer plus tard \n
                         AdminLogError ${fetchAddress.status} : ${fetchAddress.statusText}`
                     );
