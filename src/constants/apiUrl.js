@@ -1,6 +1,6 @@
 // Resolve .env file
 
-const {REACT_APP_API_KEY_OPENWEATHER, REACT_APP_API_KEY_SAINTS} = process.env;
+const { REACT_APP_API_KEY_OPENWEATHER, REACT_APP_API_KEY_SAINTS } = process.env;
 
 // URL API Call
 

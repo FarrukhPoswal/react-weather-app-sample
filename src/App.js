@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 // Import Components
-import Loader from './Components/Loader'
+import Loader from "./Components/Loader";
 import WeatherList from "./Components/WeatherList";
 import WeatherInputSearch from "./Components/WeatherInputSearch";
 import WeatherAddress from "./Components/WeatherAddress";
@@ -16,7 +16,7 @@ import * as API_URL from "./constants/apiUrl";
 import * as API_UTILS from "./constants/apiUtils";
 
 // Import CSS
-import './style/app.css';
+import "./style/app.css";
 
 // App component
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
     // Display or initialize the right location
     const handleLocations = (value) => {
         if (value !== "" && value !== undefined) {
-            const coords = value.replace(',', '').split(' ');
+            const coords = value.replace(",", "").split(" ");
             setLongitude(coords[0]);
             setLatitude(coords[1]);
         } else {
@@ -51,7 +51,7 @@ const App = () => {
     // Search the location in input field by city
     const handleInputValueSearch = (event) => {
         if (event !== "") {
-            setLocationSearch(event)
+            setLocationSearch(event);
         } else {
             handleLocations();
         }
@@ -100,13 +100,14 @@ const App = () => {
             setLongitude(currentLocation[0]);
             setLatitude(currentLocation[1]);
         }
-    }, [currentLocation, latitude, longitude])
+    }, [currentLocation, latitude, longitude]);
 
     // API Call to display the location by longitude and latitude
     useEffect(() => {
         const reverseGeocodeCallHandler = async () => {
             const fetchAddress = await fetch(
-                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`);
+                `${API_URL.API_URL_REVERSEGEO}?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`
+            );
             const addressJson = await fetchAddress.json();
             setAddress(addressJson);
             // console.log(addressJson);
@@ -115,16 +116,30 @@ const App = () => {
         if (longitude !== "" && latitude !== "") {
             reverseGeocodeCallHandler();
         }
-    }, [longitude, latitude])
+    }, [longitude, latitude]);
 
     // API Call to get datas from openweathermap.org
     useEffect(() => {
         const apiCallHandler = async () => {
-            const fetchData = await fetch(
-                `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.REACT_APP_API_KEY_OPENWEATHER}`);
-            const dataJson = await fetchData.json();
-            setDatas(dataJson);
-            // console.log(dataJson);
+            try {
+                const fetchData = await fetch(
+                    `${API_URL.API_URL_WEATHERDATA}/${API_UTILS.API_METHOD}?lat=${latitude}&lon=${longitude}&${API_UTILS.API_OPTIONS}&units=${API_UTILS.UNITS}&appid=${API_URL.REACT_APP_API_KEY_OPENWEATHER}`
+                );
+                if (fetchData.ok) {
+                    const datasJson = await fetchData.json();
+                    setDatas(datasJson);
+                    // console.log(datasJson);
+                } else {
+                    window.alert(
+                        `Erreur de connexion au serveur distant \n 
+                        Veuillez réessayer plus tard \n
+                        AdminLogError ${fetchData.status} : ${fetchData.statusText}`
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+                throw new Error(error);
+            }
         };
 
         if (longitude !== "" && latitude !== "") {
@@ -135,18 +150,48 @@ const App = () => {
     // API call to find and search the right location in the input field
     useEffect(() => {
         const fetchCityGeo = async () => {
-            const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}`);
-            const addressJson = await fetchAddress.json();
-            setCityGeo(addressJson);
-            // console.log(addressJson);
-        }
+            try {
+                const fetchAddress = await fetch(
+                    `${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}`
+                );
+                if (fetchAddress.ok) {
+                    const cityGeoJson = await fetchAddress.json();
+                    setCityGeo(cityGeoJson);
+                    // console.log(cityGeoJson);
+                } else {
+                    window.alert(
+                        `Nous ne pouvons pas déterminer cette localité \n
+                        Veuillez réessayer plus tard \n
+                        AdminLogError ${fetchAddress.status} : ${fetchAddress.statusText}`
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+                throw new Error(error);
+            }
+        };
 
         const fetchCityGeoByPostalCode = async () => {
-            const fetchAddress = await fetch(`${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}&postcode=${postalCode}`);
-            const addressJson = await fetchAddress.json();
-            setCityGeo(addressJson);
-            // console.log(addressJson);
-        }
+            try {
+                const fetchAddress = await fetch(
+                    `${API_URL.API_URL_LOCALISATIONSEARCH}/?q=${locationSearch}&postcode=${postalCode}`
+                );
+                if (fetchAddress.ok) {
+                    const cityGeoJson = await fetchAddress.json();
+                    setCityGeo(cityGeoJson);
+                    // console.log(cityGeoJson);
+                } else {
+                    window.alert(
+                        ` Nous ne pouvons pas déterminer cette localité \n
+                        Veuillez réessayer plus tard \n
+                        AdminLogError ${fetchAddress.status} : ${fetchAddress.statusText}`
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+                throw new Error(error);
+            }
+        };
 
         if (locationSearch !== "" && postalCode === "") {
             fetchCityGeo();
@@ -167,7 +212,7 @@ const App = () => {
                 setLongitude(currentLocation[0]);
                 setLatitude(currentLocation[1]);
             }
-        }
+        };
 
         if (cityGeo.length !== 0) {
             setLocationSearch();
@@ -179,7 +224,7 @@ const App = () => {
             <Loader />
         </div>
     ) : (
-        <div className={`App ${loading ? '' : 'fade-in'}`}>
+        <div className={`App ${loading ? "" : "fade-in"}`}>
             <WeatherList
                 locations={WEATHER_STATIONS}
                 handleLocations={handleLocations}
